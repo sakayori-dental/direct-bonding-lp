@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ダイレクトボンディング｜坂寄歯科医院</title>
-  <meta name="description" content="歯を削らず、1日で。天然歯に溶け込む審美修復「ダイレクトボンディング」。すきっ歯・欠け・変色・銀歯の悩みを、最小限の侵襲で解決します。">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --black: #080808;
-      --surface: #111111;
-      --surface2: #181818;
-      --border: rgba(255,255,255,0.07);
-      --gold: #c9a96e;
-      --gold-light: #e2c98a;
-      --cream: #f0ead8;
-      --text: #d8d0c0;
-      --text-muted: #7a7060;
-      --white: #f9f5ee;
+      --black: #0a0a0a;
+      --near-black: #111111;
+      --dark: #181818;
+      --card: #1e1d1b;
+      --border: #2e2c28;
+      --gold: #b89a5a;
+      --gold-light: #d4b87a;
+      --gold-dim: #8a7040;
+      --text: #d8d0c4;
+      --text-muted: #8a8070;
+      --text-dim: #5a5448;
+      --white: #f0ebe2;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,1143 +30,907 @@
     body {
       background: var(--black);
       color: var(--text);
-      font-family: 'Jost', 'Noto Serif JP', sans-serif;
+      font-family: 'Noto Serif JP', serif;
       font-weight: 300;
-      line-height: 1.8;
-      overflow-x: hidden;
+      line-height: 1.9;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ===== TYPOGRAPHY ===== */
-    .serif { font-family: 'Cormorant Garamond', 'Noto Serif JP', serif; }
-
-    h1, h2, h3 { font-weight: 300; line-height: 1.2; }
-
-    .label {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 32px;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
     }
-
-    /* ===== LAYOUT ===== */
-    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
-    .container--wide { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-
-    /* ===== HEADER ===== */
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1.25rem 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
-    }
-
-    .header-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 300;
+    .nav-logo {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 400;
+      font-size: 0.85rem;
       letter-spacing: 0.15em;
-      color: var(--cream);
+      color: var(--white);
     }
-
-    .header-cta {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+    .nav-btn {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
       color: var(--gold);
+      border: 1px solid var(--gold-dim);
+      padding: 8px 20px;
       text-decoration: none;
-      border: 1px solid rgba(201,169,110,0.4);
-      padding: 0.6rem 1.4rem;
-      transition: all 0.3s ease;
+      transition: all 0.3s;
     }
+    .nav-btn:hover { background: var(--gold); color: var(--black); }
 
-    .header-cta:hover {
-      background: var(--gold);
-      color: var(--black);
-    }
-
-    /* ===== HERO ===== */
+    /* ── HERO ── */
     .hero {
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 8rem 2rem 5rem;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
       position: relative;
       overflow: hidden;
     }
-
     .hero::before {
       content: '';
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 60% 60% at 80% 40%, rgba(201,169,110,0.07) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 50% at 15% 70%, rgba(201,169,110,0.04) 0%, transparent 50%);
+        radial-gradient(ellipse 60% 50% at 50% 40%, rgba(184,154,90,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(184,154,90,0.04) 0%, transparent 60%);
     }
-
-    .hero::after {
-      content: 'DIRECT BONDING';
-      position: absolute;
-      right: -2rem;
-      top: 50%;
-      transform: translateY(-50%) rotate(90deg);
+    .hero-inner { position: relative; z-index: 1; max-width: 720px; }
+    .hero-tag {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 7rem;
-      font-weight: 300;
-      letter-spacing: 0.3em;
-      color: rgba(201,169,110,0.04);
-      white-space: nowrap;
-      pointer-events: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      display: flex; align-items: center; justify-content: center; gap: 16px;
     }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 760px;
+    .hero-tag::before, .hero-tag::after {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--gold-dim);
     }
-
-    .hero-label {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.2s forwards;
-    }
-
-    .hero-label::before {
-      content: '';
-      display: block;
-      width: 2rem;
-      height: 1px;
-      background: var(--gold);
-    }
-
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-size: clamp(2.4rem, 6vw, 4rem);
       font-weight: 300;
+      line-height: 1.25;
       color: var(--white);
-      line-height: 1.1;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.4s forwards;
+      margin-bottom: 28px;
     }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--gold);
-    }
-
+    .hero h1 em { font-style: italic; color: var(--gold-light); }
     .hero-sub {
-      font-size: 0.95rem;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.82rem;
+      line-height: 2.2;
       color: var(--text-muted);
-      line-height: 2;
-      max-width: 500px;
-      margin-bottom: 3.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.6s forwards;
+      letter-spacing: 0.05em;
+      margin-bottom: 52px;
     }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.8s forwards;
-    }
-
-    .hero-divider {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold), transparent);
-      opacity: 0.3;
-    }
-
-    /* ===== BUTTONS ===== */
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 1rem 2.5rem;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      border: none;
-    }
-
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     .btn-primary {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
       background: var(--gold);
       color: var(--black);
+      padding: 14px 36px;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-weight: 400;
     }
-
-    .btn-primary:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(201,169,110,0.25);
-    }
-
+    .btn-primary:hover { background: var(--gold-light); }
     .btn-outline {
-      background: transparent;
-      color: var(--cream);
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-
-    /* ===== SECTION BASE ===== */
-    section { padding: 7rem 0; }
-
-    .section-header {
-      margin-bottom: 4rem;
-    }
-
-    .section-header .label {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .section-header .label::before {
-      content: '';
-      display: block;
-      width: 1.5rem;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .section-header h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      color: var(--white);
-      font-weight: 300;
-    }
-
-    /* ===== INTRO / WHAT IS ===== */
-    .intro {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .intro-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
-    }
-
-    .intro-text p {
-      font-size: 0.95rem;
-      color: var(--text);
-      line-height: 2;
-      margin-bottom: 1.5rem;
-    }
-
-    .intro-quote {
-      position: relative;
-      padding: 3rem;
-      border: 1px solid rgba(201,169,110,0.2);
-    }
-
-    .intro-quote::before {
-      content: '"';
-      position: absolute;
-      top: -1.5rem;
-      left: 2rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 6rem;
-      color: var(--gold);
-      line-height: 1;
-      opacity: 0.5;
-    }
-
-    .intro-quote p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--cream);
-      line-height: 1.6;
-    }
-
-    .intro-quote cite {
-      display: block;
-      margin-top: 1rem;
-      font-size: 0.7rem;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.78rem;
       letter-spacing: 0.15em;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 14px 36px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 24px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .container-narrow { max-width: 680px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
       color: var(--gold);
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 40px;
+    }
+    .section-label::before { content: '——'; color: var(--gold-dim); letter-spacing: 0; }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 36px;
+    }
+    h2 em { font-style: italic; color: var(--gold-light); }
+
+    p { font-size: 0.9rem; color: var(--text); line-height: 2.0; margin-bottom: 20px; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ── QUOTE BLOCK ── */
+    .quote-block {
+      border: 1px solid var(--border);
+      padding: 48px 40px;
+      margin-top: 56px;
+      position: relative;
+    }
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--gold-dim);
+      position: absolute;
+      top: 20px; left: 32px;
+    }
+    .quote-text {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 2.0;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .quote-source {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.72rem;
+      color: var(--gold-dim);
+      letter-spacing: 0.1em;
     }
 
-    /* ===== CASES / WHO ===== */
-    .cases-grid {
+    /* ── INDICATIONS GRID ── */
+    .indications-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 1px;
       background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 48px;
     }
-
-    .case-item {
-      background: var(--surface);
-      padding: 2.5rem 2rem;
+    .indication-item {
+      background: var(--card);
+      padding: 32px 28px;
       transition: background 0.3s;
     }
+    .indication-item:hover { background: #232220; }
+    .indication-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      color: var(--gold-dim);
+      margin-bottom: 12px;
+    }
+    .indication-item h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .indication-item p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
 
-    .case-item:hover { background: var(--surface2); }
-
-    .case-num {
+    /* ── REASONS ── */
+    .reasons-list { margin-top: 56px; }
+    .reason-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0 32px;
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .reason-item:first-child { border-top: 1px solid var(--border); }
+    .reason-num {
       font-family: 'Cormorant Garamond', serif;
       font-size: 3rem;
       font-weight: 300;
-      color: rgba(201,169,110,0.2);
+      color: var(--gold-dim);
       line-height: 1;
-      margin-bottom: 1rem;
+      padding-top: 4px;
     }
-
-    .case-item h3 {
-      font-size: 0.95rem;
+    .reason-content h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.15rem;
       font-weight: 400;
-      color: var(--cream);
-      margin-bottom: 0.8rem;
-      letter-spacing: 0.05em;
-    }
-
-    .case-item p {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.8;
-    }
-
-    /* ===== FEATURES ===== */
-    .features { background: var(--black); }
-
-    .features-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .feature-item {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 3rem;
-      padding: 3rem 0;
-      border-bottom: 1px solid var(--border);
-      align-items: start;
-    }
-
-    .feature-item:first-child { border-top: 1px solid var(--border); }
-
-    .feature-index {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      padding-top: 0.3rem;
-      white-space: nowrap;
-    }
-
-    .feature-body h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 300;
       color: var(--white);
-      margin-bottom: 0.8rem;
+      margin-bottom: 16px;
     }
+    .reason-content p { font-size: 0.88rem; color: var(--text-muted); }
 
-    .feature-body p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 2;
-      max-width: 560px;
-    }
-
-    /* ===== PRICING ===== */
-    .pricing { background: var(--surface); }
-
-    .pricing-table {
-      border: 1px solid var(--border);
-      overflow: hidden;
-    }
-
-    .pricing-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      padding: 1.8rem 2.5rem;
-      border-bottom: 1px solid var(--border);
-      gap: 2rem;
-    }
-
-    .pricing-row:last-child { border-bottom: none; }
-
-    .pricing-row:hover { background: rgba(255,255,255,0.02); }
-
-    .pricing-row.header-row {
-      background: rgba(201,169,110,0.06);
-      cursor: default;
-    }
-
-    .pricing-row.header-row:hover { background: rgba(201,169,110,0.06); }
-
-    .pricing-name {
-      font-size: 0.9rem;
-      color: var(--cream);
-      font-weight: 400;
-    }
-
-    .pricing-name small {
-      display: block;
+    /* ── CASES ── */
+    .cases-note {
+      font-family: 'Noto Sans JP', sans-serif;
       font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-top: 0.25rem;
-      font-weight: 300;
+      color: var(--text-dim);
+      margin-bottom: 48px;
     }
-
-    .pricing-price {
-      text-align: right;
-      white-space: nowrap;
+    .case-item {
+      border: 1px solid var(--border);
+      padding: 40px;
+      margin-bottom: 24px;
+      background: var(--card);
     }
-
-    .pricing-price strong {
-      display: block;
+    .case-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 300;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
       color: var(--gold);
+      margin-bottom: 16px;
     }
-
-    .pricing-price span {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
-    }
-
-    .pricing-note {
-      margin-top: 1.5rem;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      line-height: 1.9;
-      padding-left: 1rem;
-      border-left: 2px solid rgba(201,169,110,0.3);
-    }
-
-    /* ===== FLOW ===== */
-    .flow-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      position: relative;
-    }
-
-    .flow-steps::before {
-      content: '';
-      position: absolute;
-      left: 1.7rem;
-      top: 0; bottom: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      opacity: 0.3;
-    }
-
-    .flow-step {
-      display: grid;
-      grid-template-columns: 3.5rem 1fr;
-      gap: 2rem;
-      padding: 2rem 0;
-      align-items: start;
-    }
-
-    .step-dot {
-      width: 3.5rem;
-      height: 3.5rem;
-      border: 1px solid rgba(201,169,110,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 1;
-      background: var(--black);
-      flex-shrink: 0;
-    }
-
-    .step-dot span {
-      font-family: 'Cormorant Garamond', serif;
+    .case-item h3 {
+      font-family: 'Noto Serif JP', serif;
       font-size: 1rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .case-item p { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px; }
+    .case-meta {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);
+    }
+    .case-meta-item { font-size: 0.78rem; }
+    .case-meta-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      color: var(--gold-dim);
+      margin-bottom: 4px;
+    }
+    .case-meta-value { color: var(--text); }
+    .case-link {
+      display: inline-block; margin-top: 20px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.75rem; letter-spacing: 0.12em;
+      color: var(--gold); text-decoration: none;
+      border-bottom: 1px solid var(--gold-dim);
+      padding-bottom: 2px;
+      transition: all 0.3s;
+    }
+    .case-link:hover { color: var(--gold-light); border-color: var(--gold-light); }
+    .all-cases-link {
+      display: block; text-align: center; margin-top: 40px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.18em;
+      color: var(--text-muted); text-decoration: none;
+      padding: 18px; border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .all-cases-link:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+    /* ── FEE ── */
+    .fee-card {
+      border: 1px solid var(--border);
+      padding: 52px 48px;
+      background: var(--card);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 24px;
+      margin-bottom: 32px;
+    }
+    .fee-label {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem; font-weight: 400;
+      color: var(--white); margin-bottom: 8px;
+    }
+    .fee-note {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.75rem; color: var(--text-muted);
+    }
+    .fee-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem; font-weight: 300;
+      color: var(--gold-light); line-height: 1;
+    }
+    .fee-tax {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.72rem; color: var(--text-muted);
+      text-align: right; margin-top: 6px;
+    }
+    .fee-notices {
+      border-left: 2px solid var(--gold-dim);
+      padding-left: 20px;
+    }
+    .fee-notices p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.78rem; color: var(--text-muted);
+      line-height: 1.9; margin-bottom: 6px;
+    }
+
+    /* ── FLOW ── */
+    .flow-list { margin-top: 56px; position: relative; }
+    .flow-line {
+      position: absolute; left: 28px; top: 40px; bottom: 40px; width: 1px;
+      background: linear-gradient(to bottom, var(--gold-dim), transparent);
+    }
+    .flow-item {
+      display: flex; gap: 32px; align-items: flex-start;
+      margin-bottom: 0;
+      padding: 36px 0 36px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .flow-item:first-child { border-top: 1px solid var(--border); }
+    .flow-box {
+      flex-shrink: 0; width: 56px; height: 56px;
+      border: 1px solid var(--gold-dim);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem; letter-spacing: 0.2em;
       color: var(--gold);
+      background: var(--card);
+    }
+    .flow-new .flow-box {
+      border-color: var(--gold);
+      background: rgba(184,154,90,0.08);
+    }
+    .flow-content h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.0rem; font-weight: 400;
+      color: var(--white); margin-bottom: 10px; margin-top: 8px;
+    }
+    .flow-content p {
+      font-size: 0.83rem; color: var(--text-muted); margin-bottom: 0;
+    }
+    .flow-new-badge {
+      display: inline-block;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.62rem; letter-spacing: 0.15em;
+      color: var(--black); background: var(--gold);
+      padding: 2px 8px; margin-left: 10px;
+      vertical-align: middle;
     }
 
-    .step-body h3 {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--cream);
-      margin-bottom: 0.4rem;
-      padding-top: 0.8rem;
-    }
-
-    .step-body p {
-      font-size: 0.83rem;
-      color: var(--text-muted);
-      line-height: 1.9;
-    }
-
-    /* ===== FAQ ===== */
-    .faq { background: var(--surface); }
-
-    .faq-list { display: flex; flex-direction: column; }
-
+    /* ── FAQ ── */
+    .faq-list { margin-top: 56px; }
     .faq-item {
       border-bottom: 1px solid var(--border);
-      padding: 2rem 0;
+      padding: 0;
     }
-
+    .faq-item:first-child { border-top: 1px solid var(--border); }
     .faq-q {
-      font-size: 0.92rem;
-      color: var(--cream);
-      margin-bottom: 0.8rem;
-      display: flex;
-      align-items: baseline;
-      gap: 1rem;
+      display: flex; align-items: flex-start; gap: 20px;
+      padding: 32px 0;
+      cursor: pointer;
+      list-style: none;
+      width: 100%;
+      background: none; border: none;
+      text-align: left;
     }
-
-    .faq-q::before {
-      content: 'Q.';
+    .faq-q-label {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      color: var(--gold);
-      flex-shrink: 0;
+      font-size: 1rem; color: var(--gold);
+      flex-shrink: 0; padding-top: 2px;
     }
-
+    .faq-q-text {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.95rem; font-weight: 400;
+      color: var(--white); flex: 1; line-height: 1.7;
+    }
+    .faq-toggle {
+      flex-shrink: 0; width: 20px; height: 20px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold-dim); font-size: 1.2rem;
+      transition: transform 0.3s;
+      margin-top: 2px;
+    }
+    .faq-item.open .faq-toggle { transform: rotate(45deg); }
     .faq-a {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.9;
-      padding-left: 2rem;
+      display: none;
+      padding: 0 0 32px 40px;
     }
+    .faq-item.open .faq-a { display: block; }
+    .faq-a p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.84rem; color: var(--text-muted);
+      line-height: 2.0; margin-bottom: 10px;
+    }
+    .faq-link {
+      color: var(--gold); text-decoration: none;
+      border-bottom: 1px solid var(--gold-dim);
+      padding-bottom: 1px;
+    }
+    .faq-link:hover { color: var(--gold-light); }
 
-    /* ===== CTA ===== */
+    /* ── CTA ── */
     .cta-section {
-      background: var(--black);
-      padding: 9rem 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,169,110,0.06) 0%, transparent 70%);
-    }
-
-    .cta-section > * { position: relative; z-index: 1; }
-
-    .cta-section h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 300;
-      color: var(--white);
-      margin-bottom: 1.5rem;
-      line-height: 1.2;
-    }
-
-    .cta-section h2 em {
-      font-style: italic;
-      color: var(--gold);
-    }
-
-    .cta-section p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      margin-bottom: 3rem;
-      line-height: 2;
-    }
-
-    .cta-actions {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 2.5rem;
-    }
-
-    .tel-block {
-      display: inline-flex;
-      align-items: center;
-      gap: 1rem;
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-    }
-
-    .tel-block a {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
-      font-weight: 300;
-      color: var(--cream);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-    }
-
-    .tel-block a:hover { color: var(--gold); }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: var(--surface);
-      padding: 2.5rem;
-      text-align: center;
+      background: var(--near-black);
       border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .cta-section h2 { margin-bottom: 16px; }
+    .cta-sub {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.82rem; color: var(--text-muted);
+      margin-bottom: 48px; line-height: 2.2;
+    }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+    .cta-phone {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; color: var(--white);
+      text-decoration: none; letter-spacing: 0.08em;
+    }
+    .cta-hours {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.72rem; color: var(--text-dim);
+      margin-top: 12px; line-height: 2.0;
     }
 
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
     footer p {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      line-height: 2;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.72rem; color: var(--text-dim);
+      line-height: 2.0; margin-bottom: 0;
     }
+    footer a { color: var(--text-dim); text-decoration: none; }
 
-    footer a { color: var(--text-muted); }
-
-    .gallery-card:hover img { transform: scale(1.04); }
-
-    /* ===== ANIMATIONS ===== */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      section { padding: 5rem 0; }
-      .intro-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .cases-grid { grid-template-columns: 1fr; }
-      .feature-item { grid-template-columns: 1fr; gap: 1rem; }
-      .hero::after { display: none; }
-      .pricing-row { padding: 1.5rem; }
-      .hero-actions { flex-direction: column; align-items: flex-start; }
-      header { padding: 1rem 1.25rem; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      section { padding: 72px 20px; }
+      .reason-item { grid-template-columns: 1fr; gap: 12px; }
+      .reason-num { font-size: 2rem; }
+      .fee-card { padding: 32px 24px; }
+      .flow-line { display: none; }
+      .quote-block { padding: 40px 28px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="header-logo">坂寄歯科医院</div>
-    <a href="#reserve" class="header-cta">初診予約</a>
-  </header>
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">坂寄歯科医院</span>
+  <a href="#reserve" class="nav-btn">初診予約</a>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-label">
-        <span class="label">Direct Bonding</span>
-      </div>
-      <h1>
-        歯を守りながら、<br>
-        <em>美しさを</em>取り戻す。
-      </h1>
-      <p class="hero-sub">
-        ダイレクトボンディングは、削らず・型取り不要・最短1日で<br>
-        天然歯に溶け込む自然な歯を再現する審美修復治療です。
-      </p>
-      <div class="hero-actions">
-        <a href="#reserve" class="btn btn-primary">Web予約（初診）</a>
-        <a href="#flow" class="btn btn-outline">治療の流れを見る</a>
-      </div>
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <p class="hero-tag">Direct Bonding</p>
+    <h1>歯を守りながら、<br><em>美しさを</em>取り戻す。</h1>
+    <p class="hero-sub">
+      ダイレクトボンディングは、削らず・型取り不要・最短1日で<br>
+      天然歯に溶け込む自然な歯を再現する審美修復治療です。
+    </p>
+    <div class="hero-btns">
+      <a href="#reserve" class="btn-primary">Web予約（初診）</a>
+      <a href="#flow" class="btn-outline">治療の流れを見る</a>
     </div>
-    <div class="hero-divider"></div>
-  </section>
+  </div>
+</section>
 
-  <!-- INTRO -->
-  <section class="intro">
-    <div class="container">
-      <div class="intro-grid">
-        <div class="intro-text reveal">
-          <div class="section-header">
-            <div class="label">What is it</div>
-            <h2>ダイレクトボンディング<br>とは</h2>
-          </div>
-          <p>
-            複数の色調を持つ審美修復用レジン（ハイブリッドセラミック）を、
-            歯に直接積層・成形する治療法です。
-          </p>
-          <p>
-            従来のセラミック修復とは異なり、型取りや技工所への依頼が不要。
-            歯を削る量を最小限に抑えながら、その日のうちに仕上げることができます。
-          </p>
-          <p>
-            天然歯のエナメル質・象牙質の複雑な色調と透明感を、
-            多色積層で丁寧に再現します。
-          </p>
-        </div>
-        <div class="intro-quote reveal">
-          <p>
-            歯は一生もの。<br>
-            削る前に、<br>できることがある。
-          </p>
-          <cite>— MI治療（最小侵襲歯科）の考え方より</cite>
-        </div>
-      </div>
-    </div>
-  </section>
+<hr class="divider" />
 
-  <!-- CASES -->
-  <section style="padding: 7rem 0; background: var(--black);">
-    <div class="container--wide">
-      <div class="container section-header reveal">
-        <div class="label">Indications</div>
-        <h2>こんなお悩みに対応します</h2>
-      </div>
-      <div class="cases-grid">
-        <div class="case-item reveal">
-          <div class="case-num">01</div>
-          <h3>すきっ歯・歯間の隙間</h3>
-          <p>矯正ほどの時間もコストもかけずに、前歯の気になる隙間を自然に埋めます。</p>
-        </div>
-        <div class="case-item reveal">
-          <div class="case-num">02</div>
-          <h3>欠けた歯・外傷</h3>
-          <p>転倒や衝撃で欠けてしまった歯を、治療したとわからないレベルに修復します。</p>
-        </div>
-        <div class="case-item reveal">
-          <div class="case-num">03</div>
-          <h3>虫歯治療後の詰め物</h3>
-          <p>銀歯やプラスチック詰め物を、天然歯に馴染む白い素材に置き換えます。</p>
-        </div>
-        <div class="case-item reveal">
-          <div class="case-num">04</div>
-          <h3>ホワイトスポット</h3>
-          <p>歯の表面にできた白い斑点（石灰化不全など）を自然な状態に整えます。</p>
-        </div>
-        <div class="case-item reveal">
-          <div class="case-num">05</div>
-          <h3>ブラックトライアングル</h3>
-          <p>歯肉退縮により生じた歯間の三角形の黒い隙間を、丁寧に閉鎖します。</p>
-        </div>
-        <div class="case-item reveal">
-          <div class="case-num">06</div>
-          <h3>歯の形・大きさの不整</h3>
-          <p>矮小歯や摩耗による歯の形のバランスを整え、口元の印象を改善します。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="features">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="label">Why choose us</div>
-        <h2>この治療を選ぶ理由</h2>
-      </div>
-      <div class="features-list">
-        <div class="feature-item reveal">
-          <div class="feature-index">01</div>
-          <div class="feature-body">
-            <h3>歯を削る量を最小限に</h3>
-            <p>クラウンやラミネートベニアに比べ、健康な歯質をほとんど削らずに済みます。天然歯の残存量が多いほど、歯の寿命は長くなります。ダイレクトボンディングはMI（最小侵襲）の思想に最も忠実な修復法のひとつです。</p>
-          </div>
-        </div>
-        <div class="feature-item reveal">
-          <div class="feature-index">02</div>
-          <div class="feature-body">
-            <h3>最短1回・その日のうちに完成</h3>
-            <p>型取りや技工所への依頼が一切不要。口腔内で直接成形・研磨まで完了するため、通常1〜2時間の治療で仕上がります。お忙しい方にも選ばれやすい治療です。</p>
-          </div>
-        </div>
-        <div class="feature-item reveal">
-          <div class="feature-index">03</div>
-          <div class="feature-body">
-            <h3>多色積層で天然歯の質感を再現</h3>
-            <p>歯のエナメル質・象牙質の色調・透明感を意識しながら、複数の色のレジンを重ねて築盛します。「治療したとわからない」仕上がりを追求するため、使用する材料にもこだわっています。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CASES GALLERY -->
-  <section style="background: var(--surface); padding: 7rem 0;" id="cases">
-    <div class="container--wide">
-      <div class="container section-header reveal">
-        <div class="label">Case Gallery</div>
-        <h2>症例のご紹介</h2>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.8rem;">※ 掲載症例は一例です。仕上がりや経過には個人差があります。</p>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding: 0 2rem;">
-
-        <!-- Case 1 -->
-        <div class="reveal" style="background: var(--surface2); border: 1px solid var(--border); overflow: hidden;">
-          <img
-            src="https://static.wixstatic.com/media/7a8313_0fc504e2e9134f18b27fd5e3317503ec~mv2.png"
-            alt="ダイレクトボンディング症例：右上6 むし歯治療（20代男性）術前・術後比較写真"
-            style="width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;"
-          >
-          <div style="padding: 1.8rem;">
-            <div class="label" style="margin-bottom: 0.8rem;">Case 01</div>
-            <h3 style="font-size: 0.95rem; color: var(--cream); font-weight: 400; margin-bottom: 1.2rem; line-height: 1.6;">むし歯を確認・最小限に治療<br><span style="font-size: 0.8rem; color: var(--text-muted);">右上6・20代男性</span></h3>
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.78rem;">
-              <tr style="border-bottom: 1px solid var(--border);">
-                <td style="color: var(--text-muted); padding: 0.5rem 0; white-space: nowrap; padding-right: 1rem;">治療内容</td>
-                <td style="color: var(--text);">ダイレクトボンディング（右上6・1歯）</td>
-              </tr>
-              <tr style="border-bottom: 1px solid var(--border);">
-                <td style="color: var(--text-muted); padding: 0.5rem 0; padding-right: 1rem;">費用</td>
-                <td style="color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem;">¥50,000 <span style="font-size: 0.72rem; color: var(--text-muted);">税込</span></td>
-              </tr>
-              <tr style="border-bottom: 1px solid var(--border);">
-                <td style="color: var(--text-muted); padding: 0.5rem 0; padding-right: 1rem;">期間・回数</td>
-                <td style="color: var(--text);">カウンセリング1回＋治療1回（計2回）</td>
-              </tr>
-              <tr>
-                <td style="color: var(--text-muted); padding: 0.5rem 0; padding-right: 1rem; vertical-align: top;">リスク</td>
-                <td style="color: var(--text);">経年変色・欠けの可能性あり。定期メンテナンス推奨。</td>
-              </tr>
-            </table>
-            <a href="https://www.fujishiro-dental.com/post/direct-bonding-upper-molar-20260225" target="_blank" rel="noopener" style="display: inline-block; margin-top: 1.2rem; font-size: 0.72rem; color: var(--gold); letter-spacing: 0.1em; text-decoration: none; border-bottom: 1px solid rgba(201,169,110,0.3);">症例詳細を読む →</a>
-          </div>
-        </div>
-
-        <!-- Case 2 -->
-        <div class="reveal" style="background: var(--surface2); border: 1px solid var(--border); overflow: hidden;">
-          <img
-            src="https://static.wixstatic.com/media/7a8313_83529a82851b4d46a71f83991091f5c6~mv2.png"
-            alt="ダイレクトボンディング症例：右下6 セラミックインレー破損の再治療（40代女性）術前・術後比較写真"
-            style="width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;"
-          >
-          <div style="padding: 1.8rem;">
-            <div class="label" style="margin-bottom: 0.8rem;">Case 02</div>
-            <h3 style="font-size: 0.95rem; color: var(--cream); font-weight: 400; margin-bottom: 1.2rem; line-height: 1.6;">セラミック破損の再治療<br><span style="font-size: 0.8rem; color: var(--text-muted);">右下6・40代女性</span></h3>
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.78rem;">
-              <tr style="border-bottom: 1px solid var(--border);">
-                <td style="color: var(--text-muted); padding: 0.5rem 0; white-space: nowrap; padding-right: 1rem;">治療内容</td>
-                <td style="color: var(--text);">ダイレクトボンディング（右下6・1歯）</td>
-              </tr>
-              <tr style="border-bottom: 1px solid var(--border);">
-                <td style="color: var(--text-muted); padding: 0.5rem 0; padding-right: 1rem;">費用</td>
-                <td style="color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem;">¥50,000 <span style="font-size: 0.72rem; color: var(--text-muted);">税込</span></td>
-              </tr>
-              <tr style="border-bottom: 1px solid var(--border);">
-                <td style="color: var(--text-muted); padding: 0.5rem 0; padding-right: 1rem;">期間・回数</td>
-                <td style="color: var(--text);">カウンセリング1回＋治療1回（計2回）</td>
-              </tr>
-              <tr>
-                <td style="color: var(--text-muted); padding: 0.5rem 0; padding-right: 1rem; vertical-align: top;">リスク</td>
-                <td style="color: var(--text);">経年変色・欠けの可能性あり。定期メンテナンス推奨。</td>
-              </tr>
-            </table>
-            <a href="https://www.fujishiro-dental.com/post/direct-bonding-lower-right-20260215" target="_blank" rel="noopener" style="display: inline-block; margin-top: 1.2rem; font-size: 0.72rem; color: var(--gold); letter-spacing: 0.1em; text-decoration: none; border-bottom: 1px solid rgba(201,169,110,0.3);">症例詳細を読む →</a>
-          </div>
-        </div>
-
-        <!-- Case 3 -->
-        <div class="reveal" style="background: var(--surface2); border: 1px solid var(--border); overflow: hidden;">
-          <img
-            src="https://static.wixstatic.com/media/7a8313_86eaff009a1d41879b86b1d62d0f7558~mv2.png"
-            alt="ダイレクトボンディング症例：下顎奥歯 むし歯治療・歯を最大限保存（30代男性）術前・術後比較写真"
-            style="width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;"
-          >
-          <div style="padding: 1.8rem;">
-            <div class="label" style="margin-bottom: 0.8rem;">Case 03</div>
-            <h3 style="font-size: 0.95rem; color: var(--cream); font-weight: 400; margin-bottom: 1.2rem; line-height: 1.6;">歯を残して長持ちさせる治療<br><span style="font-size: 0.8rem; color: var(--text-muted);">下顎奥歯・30代男性</span></h3>
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.78rem;">
-              <tr style="border-bottom: 1px solid var(--border);">
-                <td style="color: var(--text-muted); padding: 0.5rem 0; white-space: nowrap; padding-right: 1rem;">治療内容</td>
-                <td style="color: var(--text);">ダイレクトボンディング（下顎奥歯・1歯）</td>
-              </tr>
-              <tr style="border-bottom: 1px solid var(--border);">
-                <td style="color: var(--text-muted); padding: 0.5rem 0; padding-right: 1rem;">費用</td>
-                <td style="color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem;">¥50,000 <span style="font-size: 0.72rem; color: var(--text-muted);">税込</span></td>
-              </tr>
-              <tr style="border-bottom: 1px solid var(--border);">
-                <td style="color: var(--text-muted); padding: 0.5rem 0; padding-right: 1rem;">期間・回数</td>
-                <td style="color: var(--text);">カウンセリング1回＋治療1回（計2回）</td>
-              </tr>
-              <tr>
-                <td style="color: var(--text-muted); padding: 0.5rem 0; padding-right: 1rem; vertical-align: top;">リスク</td>
-                <td style="color: var(--text);">経年変色・欠けの可能性あり。定期メンテナンス推奨。</td>
-              </tr>
-            </table>
-            <a href="https://www.fujishiro-dental.com/post/direct-bonding-lower-molar-20250905" target="_blank" rel="noopener" style="display: inline-block; margin-top: 1.2rem; font-size: 0.72rem; color: var(--gold); letter-spacing: 0.1em; text-decoration: none; border-bottom: 1px solid rgba(201,169,110,0.3);">症例詳細を読む →</a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- More cases link -->
-      <div style="text-align: center; margin-top: 3rem;" class="reveal">
-        <a href="https://www.fujishiro-dental.com/blog/categories/%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88%E3%83%9C%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0" target="_blank" rel="noopener" class="btn btn-outline">
-          すべての症例を見る
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section style="background: var(--surface); padding: 7rem 0;">
-    <div class="container--wide">
-      <div class="container section-header reveal">
-        <div class="label">Case Gallery</div>
-        <h2>症例写真</h2>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem; line-height: 2;">
-          以下はすべて坂寄歯科医院での実際の治療症例です。<br>
-          各症例の詳細（治療内容・費用・期間・リスク）はブログ記事をご覧ください。
-        </p>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border);">
-
-        <div class="gallery-card reveal" style="background: var(--surface2); overflow: hidden;">
-          <div style="overflow: hidden; aspect-ratio: 4/3;">
-            <img src="https://static.wixstatic.com/media/7a8313_0fc504e2e9134f18b27fd5e3317503ec~mv2.png/v1/fill/w_600,h_450,fp_0.50_0.50,q_95,enc_avif,quality_auto/7a8313_0fc504e2e9134f18b27fd5e3317503ec~mv2.webp"
-              alt="むし歯の必要性を確認して最小限に治療 ダイレクトボンディング 右上6 20代男性 術前・術後写真"
-              style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.5s ease;">
-          </div>
-          <div style="padding: 1.8rem 2rem;">
-            <div style="font-size:0.65rem; letter-spacing:0.2em; color:var(--gold); margin-bottom:0.6rem; font-weight:500;">CASE 01</div>
-            <h3 style="font-size:0.92rem; color:var(--cream); font-weight:400; margin-bottom:0.5rem;">右上6 ／ 20代 男性</h3>
-            <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin-bottom:1.2rem;">他院で「むし歯がある」と言われたが本当に治療が必要か確認したい、とご来院。必要最小限の範囲のみを除去しダイレクトボンディングで修復。</p>
-            <div style="font-size:0.72rem; color:var(--text-muted); border-top:1px solid var(--border); padding-top:0.8rem; line-height:1.8;">
-              治療内容：ダイレクトボンディング 1歯　費用：¥50,000（税込）　期間：1回<br>
-              リスク：経年で変色・破損の可能性あり。定期メンテナンス推奨。
-            </div>
-            <a href="https://www.fujishiro-dental.com/post/direct-bonding-upper-molar-20260225" target="_blank" rel="noopener"
-              style="display:inline-block; margin-top:1rem; font-size:0.7rem; letter-spacing:0.15em; color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(201,169,110,0.3); padding-bottom:0.1rem;">詳細を見る →</a>
-          </div>
-        </div>
-
-        <div class="gallery-card reveal" style="background: var(--surface2); overflow: hidden;">
-          <div style="overflow: hidden; aspect-ratio: 4/3;">
-            <img src="https://static.wixstatic.com/media/7a8313_83529a82851b4d46a71f83991091f5c6~mv2.png/v1/fill/w_600,h_450,fp_0.50_0.50,q_95,enc_avif,quality_auto/7a8313_83529a82851b4d46a71f83991091f5c6~mv2.webp"
-              alt="セラミックインレー破損の再治療 右下6 ダイレクトボンディング 40代女性 術前・術後写真"
-              style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.5s ease;">
-          </div>
-          <div style="padding: 1.8rem 2rem;">
-            <div style="font-size:0.65rem; letter-spacing:0.2em; color:var(--gold); margin-bottom:0.6rem; font-weight:500;">CASE 02</div>
-            <h3 style="font-size:0.92rem; color:var(--cream); font-weight:400; margin-bottom:0.5rem;">右下6（セラミック破損後の再治療）／ 40代 女性</h3>
-            <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin-bottom:1.2rem;">以前入れたセラミックインレーが欠けたのをきっかけに来院。歯質を最大限温存しながらダイレクトボンディングで再修復。</p>
-            <div style="font-size:0.72rem; color:var(--text-muted); border-top:1px solid var(--border); padding-top:0.8rem; line-height:1.8;">
-              治療内容：ダイレクトボンディング 1歯　費用：¥50,000（税込）　期間：1〜2回<br>
-              リスク：経年で変色・破損の可能性あり。定期メンテナンス推奨。
-            </div>
-            <a href="https://www.fujishiro-dental.com/post/direct-bonding-lower-right-20260215" target="_blank" rel="noopener"
-              style="display:inline-block; margin-top:1rem; font-size:0.7rem; letter-spacing:0.15em; color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(201,169,110,0.3); padding-bottom:0.1rem;">詳細を見る →</a>
-          </div>
-        </div>
-
-        <div class="gallery-card reveal" style="background: var(--surface2); overflow: hidden;">
-          <div style="overflow: hidden; aspect-ratio: 4/3;">
-            <img src="https://static.wixstatic.com/media/7a8313_8dc6facb158d4146926532775dc98b52~mv2.png/v1/fill/w_600,h_450,fp_0.50_0.50,q_95,enc_avif,quality_auto/7a8313_8dc6facb158d4146926532775dc98b52~mv2.webp"
-              alt="上顎奥歯 右上5・6 歯と歯の間のむし歯再治療 ダイレクトボンディング 40代女性 術前術後"
-              style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.5s ease;">
-          </div>
-          <div style="padding: 1.8rem 2rem;">
-            <div style="font-size:0.65rem; letter-spacing:0.2em; color:var(--gold); margin-bottom:0.6rem; font-weight:500;">CASE 03</div>
-            <h3 style="font-size:0.92rem; color:var(--cream); font-weight:400; margin-bottom:0.5rem;">右上5・6（歯間むし歯の再治療）／ 40代 女性</h3>
-            <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin-bottom:1.2rem;">シンガポールからお越しの患者さん。歯と歯の間のむし歯をラバーダム防湿下で丁寧に除去し、2歯をダイレクトボンディングで修復。</p>
-            <div style="font-size:0.72rem; color:var(--text-muted); border-top:1px solid var(--border); padding-top:0.8rem; line-height:1.8;">
-              治療内容：ダイレクトボンディング 2歯　費用：¥100,000（税込）　期間：1〜2回<br>
-              リスク：経年で変色・破損の可能性あり。定期メンテナンス推奨。
-            </div>
-            <a href="https://www.fujishiro-dental.com/post/direct-bonding-ur56-interproximal-retx-20260115" target="_blank" rel="noopener"
-              style="display:inline-block; margin-top:1rem; font-size:0.7rem; letter-spacing:0.15em; color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(201,169,110,0.3); padding-bottom:0.1rem;">詳細を見る →</a>
-          </div>
-        </div>
-
-        <div class="gallery-card reveal" style="background: var(--surface2); overflow: hidden;">
-          <div style="overflow: hidden; aspect-ratio: 4/3;">
-            <img src="https://static.wixstatic.com/media/7a8313_ffd59f0cba3e4f05aae6e68bea6f80d3~mv2.png/v1/fill/w_600,h_450,fp_0.50_0.50,q_95,enc_avif,quality_auto/7a8313_ffd59f0cba3e4f05aae6e68bea6f80d3~mv2.webp"
-              alt="セラミック治療後の破折とむし歯 ダイレクトボンディング修復 30代女性 術前・術後"
-              style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.5s ease;">
-          </div>
-          <div style="padding: 1.8rem 2rem;">
-            <div style="font-size:0.65rem; letter-spacing:0.2em; color:var(--gold); margin-bottom:0.6rem; font-weight:500;">CASE 04</div>
-            <h3 style="font-size:0.92rem; color:var(--cream); font-weight:400; margin-bottom:0.5rem;">セラミック破折後の再治療 ／ 30代 女性</h3>
-            <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin-bottom:1.2rem;">他院でのセラミックインレーが割れたことで来院。歯をできる限り残せるダイレクトボンディングでの治療が可能と判断し修復。</p>
-            <div style="font-size:0.72rem; color:var(--text-muted); border-top:1px solid var(--border); padding-top:0.8rem; line-height:1.8;">
-              治療内容：ダイレクトボンディング 1歯　費用：¥50,000（税込）　期間：1〜2回<br>
-              リスク：経年で変色・破損の可能性あり。定期メンテナンス推奨。
-            </div>
-            <a href="https://www.fujishiro-dental.com/post/direct-bonding-case-ceramic-fracture" target="_blank" rel="noopener"
-              style="display:inline-block; margin-top:1rem; font-size:0.7rem; letter-spacing:0.15em; color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(201,169,110,0.3); padding-bottom:0.1rem;">詳細を見る →</a>
-          </div>
-        </div>
-
-      </div>
-      <div style="text-align:center; margin-top:2.5rem;" class="reveal">
-        <a href="https://www.fujishiro-dental.com/blog/categories/%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88%E3%83%9C%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0" target="_blank" rel="noopener" class="btn btn-outline">すべての症例を見る</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="pricing" id="pricing">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="label">Fee</div>
-        <h2>料金について</h2>
-      </div>
-      <div class="pricing-table reveal">
-        <div class="pricing-row" style="padding: 3rem 2.5rem;">
-          <div class="pricing-name" style="font-size: 1rem;">
-            ダイレクトボンディング
-            <small>虫歯修復・審美目的いずれも同一料金／1歯あたり</small>
-          </div>
-          <div class="pricing-price">
-            <strong style="font-size: 2.2rem;">¥50,000</strong>
-            <span>税込</span>
-          </div>
-        </div>
-      </div>
-      <p class="pricing-note reveal">
-        ※ 本治療は自由診療（保険適用外）です。<br>
-        ※ 口腔内の状態や治療範囲により費用が異なる場合があります。詳しくはカウンセリングにてご案内します。<br>
-        ※ 状態によってはセラミック修復をご提案する場合があります。<br>
-        ※ クレジットカード・デンタルローンに対応しています。
-      </p>
-    </div>
-  </section>
-
-  <!-- FLOW -->
-  <section id="flow" style="background: var(--black);">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="label">Treatment flow</div>
-        <h2>治療の流れ</h2>
-      </div>
-      <div class="flow-steps reveal">
-        <div class="flow-step">
-          <div class="step-dot"><span>01</span></div>
-          <div class="step-body">
-            <h3>Web予約・お電話でご予約</h3>
-            <p>初診予約はWeb予約システムまたはお電話にて承ります。「ダイレクトボンディングについて相談したい」とお申し付けください。</p>
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="step-dot"><span>02</span></div>
-          <div class="step-body">
-            <h3>初診カウンセリング（約30〜40分）</h3>
-            <p>お口の中の状態を確認し、ダイレクトボンディングが適応できるかを丁寧に診査します。治療内容・費用・リスクについても詳しくご説明します。</p>
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="step-dot"><span>03</span></div>
-          <div class="step-body">
-            <h3>治療当日（約1〜2時間）</h3>
-            <p>必要最小限の前処置後、レジンを積層・成形・光照射で硬化させます。仕上げに研磨を行い、咬み合わせを確認して完成です。</p>
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="step-dot"><span>04</span></div>
-          <div class="step-body">
-            <h3>定期メンテナンス</h3>
-            <p>ダイレクトボンディングを長く美しく保つために、定期的なメンテナンスをお勧めしています。表面の研磨で艶を回復させることができます。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="faq">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="label">FAQ</div>
-        <h2>よくあるご質問</h2>
-      </div>
-      <div class="faq-list">
-        <div class="faq-item reveal">
-          <div class="faq-q">セラミックとどう違いますか？</div>
-          <p class="faq-a">セラミックは技工所で製作するため強度・耐変色性に優れますが、歯を大きく削る必要があります。ダイレクトボンディングは削る量が少ない反面、経年での変色や欠けが起きる可能性があります。どちらが適切かは口腔内の状態によって異なります。</p>
-        </div>
-        <div class="faq-item reveal">
-          <div class="faq-q">どのくらい持ちますか？</div>
-          <p class="faq-a">適切なメンテナンスを行えば5〜10年以上の経過が期待できます。ただし、咬み合わせの強さや生活習慣（色の濃い飲食物など）によって異なります。部分的な修理・補修ができるのもこの治療の利点です。</p>
-        </div>
-        <div class="faq-item reveal">
-          <div class="faq-q">痛みはありますか？</div>
-          <p class="faq-a">虫歯治療を伴う場合は麻酔を使用します。審美目的のみの場合は、削る量が最小限のため麻酔なしで対応できるケースがほとんどです。</p>
-        </div>
-        <div class="faq-item reveal">
-          <div class="faq-q">1回で終わりますか？</div>
-          <p class="faq-a">多くの場合、カウンセリング（初診）と治療の2回です。口腔内の状態によっては事前に歯のクリーニングをお願いする場合があります。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section" id="reserve">
-    <div class="label" style="justify-content: center; display: flex; margin-bottom: 1.5rem;">First Visit</div>
-    <h2>まずは、お気軽に<br><em>ご相談ください。</em></h2>
+<!-- WHAT IS IT -->
+<section id="about">
+  <div class="container-narrow">
+    <p class="section-label">What is it</p>
+    <h2>ダイレクトボンディング<br>とは</h2>
     <p>
+      複数の色調を持つコンポジットレジンを、歯に直接積層・成形する審美修復治療です。
+    </p>
+    <p>
+      従来のセラミック修復とは異なり、型取りや技工所への依頼が不要。
+      歯を削る量を最小限に抑えながら、その日のうちに仕上げることができます。
+    </p>
+    <p>
+      天然歯のエナメル質・象牙質の複雑な色調と透明感を、多色積層で丁寧に再現します。
+    </p>
+    <div class="quote-block">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">
+        歯は一生もの。<br>
+        削る前に、<br>
+        できることがある。
+      </p>
+      <p class="quote-source">— MI治療（最小侵襲歯科）の考え方より</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- INDICATIONS -->
+<section id="indications">
+  <div class="container">
+    <p class="section-label">Indications</p>
+    <h2>こんなお悩みに<br>対応します</h2>
+    <div class="indications-grid">
+      <div class="indication-item">
+        <p class="indication-num">01</p>
+        <h3>すきっ歯・歯間の隙間</h3>
+        <p>矯正ほどの時間もコストもかけずに、前歯の気になる隙間を自然に埋めます。</p>
+      </div>
+      <div class="indication-item">
+        <p class="indication-num">02</p>
+        <h3>欠けた歯・外傷</h3>
+        <p>転倒や衝撃で欠けてしまった歯を、治療したとわからないレベルに修復します。</p>
+      </div>
+      <div class="indication-item">
+        <p class="indication-num">03</p>
+        <h3>虫歯治療後の詰め物</h3>
+        <p>銀歯やプラスチック詰め物を、天然歯に馴染む白い素材に置き換えます。</p>
+      </div>
+      <div class="indication-item">
+        <p class="indication-num">04</p>
+        <h3>ホワイトスポット</h3>
+        <p>歯の表面にできた白い斑点（石灰化不全など）を自然な状態に整えます。</p>
+      </div>
+      <div class="indication-item">
+        <p class="indication-num">05</p>
+        <h3>ブラックトライアングル</h3>
+        <p>歯肉退縮により生じた歯間の三角形の黒い隙間を、丁寧に閉鎖します。</p>
+      </div>
+      <div class="indication-item">
+        <p class="indication-num">06</p>
+        <h3>歯の形・大きさの不整</h3>
+        <p>矮小歯や摩耗による歯の形のバランスを整え、口元の印象を改善します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- WHY CHOOSE US -->
+<section id="reasons">
+  <div class="container">
+    <p class="section-label">Why choose us</p>
+    <h2>この治療を選ぶ理由</h2>
+    <div class="reasons-list">
+      <div class="reason-item">
+        <div class="reason-num">01</div>
+        <div class="reason-content">
+          <h3>歯を削る量を最小限に</h3>
+          <p>クラウンやラミネートベニアに比べ、健康な歯質をほとんど削らずに済みます。天然歯の残存量が多いほど、歯の寿命は長くなります。ダイレクトボンディングはMI（最小侵襲）の思想に最も忠実な修復法のひとつです。</p>
+        </div>
+      </div>
+      <div class="reason-item">
+        <div class="reason-num">02</div>
+        <div class="reason-content">
+          <h3>最短1回・その日のうちに完成</h3>
+          <p>型取りや技工所への依頼が一切不要。口腔内で直接成形・研磨まで完了するため、通常1〜2時間の治療で仕上がります。お忙しい方にも選ばれやすい治療です。</p>
+        </div>
+      </div>
+      <div class="reason-item">
+        <div class="reason-num">03</div>
+        <div class="reason-content">
+          <h3>多色積層で天然歯の質感を再現</h3>
+          <p>歯のエナメル質・象牙質の色調・透明感を意識しながら、複数の色のレジンを重ねて築盛します。「治療したとわからない」仕上がりを追求するため、使用する材料にもこだわっています。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CASE GALLERY -->
+<section id="cases">
+  <div class="container">
+    <p class="section-label">Case Gallery</p>
+    <h2>症例写真</h2>
+    <p class="cases-note">以下はすべて坂寄歯科医院での実際の治療症例です。各症例の詳細（治療内容・費用・期間・リスク）はブログ記事をご覧ください。</p>
+
+    <div class="case-item">
+      <p class="case-num">CASE 01</p>
+      <h3>右上6 ／ 20代 男性</h3>
+      <p>他院で「むし歯がある」と言われたが本当に治療が必要か確認したい、とご来院。必要最小限の範囲のみを除去しダイレクトボンディングで修復。</p>
+      <div class="case-meta">
+        <div class="case-meta-item">
+          <p class="case-meta-label">治療内容</p>
+          <p class="case-meta-value">ダイレクトボンディング 1歯</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">費用</p>
+          <p class="case-meta-value">¥50,000（税込）</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">期間・回数</p>
+          <p class="case-meta-value">1回</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">リスク</p>
+          <p class="case-meta-value">経年で変色・破損の可能性あり。定期メンテナンス推奨。</p>
+        </div>
+      </div>
+      <a href="https://www.fujishiro-dental.com/post/direct-bonding-upper-molar-20260225" class="case-link" target="_blank">詳細を見る →</a>
+    </div>
+
+    <div class="case-item">
+      <p class="case-num">CASE 02</p>
+      <h3>右下6（セラミック破損後の再治療）／ 40代 女性</h3>
+      <p>以前入れたセラミックインレーが欠けたのをきっかけに来院。歯質を最大限温存しながらダイレクトボンディングで再修復。</p>
+      <div class="case-meta">
+        <div class="case-meta-item">
+          <p class="case-meta-label">治療内容</p>
+          <p class="case-meta-value">ダイレクトボンディング 1歯</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">費用</p>
+          <p class="case-meta-value">¥50,000（税込）</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">期間・回数</p>
+          <p class="case-meta-value">1〜2回</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">リスク</p>
+          <p class="case-meta-value">経年で変色・破損の可能性あり。定期メンテナンス推奨。</p>
+        </div>
+      </div>
+      <a href="https://www.fujishiro-dental.com/post/direct-bonding-lower-right-20260215" class="case-link" target="_blank">詳細を見る →</a>
+    </div>
+
+    <div class="case-item">
+      <p class="case-num">CASE 03</p>
+      <h3>右上5・6（歯間むし歯の再治療）／ 40代 女性</h3>
+      <p>シンガポールからお越しの患者さん。歯と歯の間のむし歯をラバーダム防湿下で丁寧に除去し、2歯をダイレクトボンディングで修復。</p>
+      <div class="case-meta">
+        <div class="case-meta-item">
+          <p class="case-meta-label">治療内容</p>
+          <p class="case-meta-value">ダイレクトボンディング 2歯</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">費用</p>
+          <p class="case-meta-value">¥100,000（税込）</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">期間・回数</p>
+          <p class="case-meta-value">1〜2回</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">リスク</p>
+          <p class="case-meta-value">経年で変色・破損の可能性あり。定期メンテナンス推奨。</p>
+        </div>
+      </div>
+      <a href="https://www.fujishiro-dental.com/post/direct-bonding-ur56-interproximal-retx-20260115" class="case-link" target="_blank">詳細を見る →</a>
+    </div>
+
+    <div class="case-item">
+      <p class="case-num">CASE 04</p>
+      <h3>セラミック破折後の再治療 ／ 30代 女性</h3>
+      <p>他院でのセラミックインレーが割れたことで来院。歯をできる限り残せるダイレクトボンディングでの治療が可能と判断し修復。</p>
+      <div class="case-meta">
+        <div class="case-meta-item">
+          <p class="case-meta-label">治療内容</p>
+          <p class="case-meta-value">ダイレクトボンディング 1歯</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">費用</p>
+          <p class="case-meta-value">¥50,000（税込）</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">期間・回数</p>
+          <p class="case-meta-value">1〜2回</p>
+        </div>
+        <div class="case-meta-item">
+          <p class="case-meta-label">リスク</p>
+          <p class="case-meta-value">経年で変色・破損の可能性あり。定期メンテナンス推奨。</p>
+        </div>
+      </div>
+      <a href="https://www.fujishiro-dental.com/post/direct-bonding-case-ceramic-fracture" class="case-link" target="_blank">詳細を見る →</a>
+    </div>
+
+    <a href="https://www.fujishiro-dental.com/blog/categories/%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88%E3%83%9C%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0" class="all-cases-link" target="_blank">すべての症例を見る</a>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- FEE -->
+<section id="fee">
+  <div class="container">
+    <p class="section-label">Fee</p>
+    <h2>料金について</h2>
+    <div class="fee-card">
+      <div>
+        <p class="fee-label">ダイレクトボンディング</p>
+        <p class="fee-note">虫歯修復・審美目的いずれも同一料金／1歯あたり</p>
+      </div>
+      <div>
+        <p class="fee-price">¥50,000</p>
+        <p class="fee-tax">税込</p>
+      </div>
+    </div>
+    <div class="fee-notices">
+      <p>※ 本治療は自由診療（保険適用外）です。</p>
+      <p>※ 口腔内の状態や治療範囲により費用が異なる場合があります。詳しくはカウンセリングにてご案内します。</p>
+      <p>※ 状態によってはセラミック修復をご提案する場合があります。</p>
+      <p>※ クレジットカードでのお支払いに対応しています。</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- TREATMENT FLOW -->
+<section id="flow">
+  <div class="container">
+    <p class="section-label">Treatment Flow</p>
+    <h2>治療の流れ</h2>
+    <div class="flow-list">
+
+      <div class="flow-item">
+        <div class="flow-box">01</div>
+        <div class="flow-content">
+          <h3>Web予約・お電話でご予約</h3>
+          <p>初診予約はWeb予約システムまたはお電話にて承ります。「ダイレクトボンディングについて相談したい」とお申し付けください。</p>
+        </div>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-box">02</div>
+        <div class="flow-content">
+          <h3>初診カウンセリング（約30〜40分）</h3>
+          <p>お口の中の状態を確認し、ダイレクトボンディングが適応できるかを丁寧に診査します。治療内容・費用・リスクについても詳しくご説明します。</p>
+        </div>
+      </div>
+
+      <div class="flow-item flow-new">
+        <div class="flow-box">03</div>
+        <div class="flow-content">
+          <h3>前処置（クリーニング・歯石除去）<span class="flow-new-badge">NEW</span></h3>
+          <p>歯の着色や歯石を除去し、治療の精度を高めるための準備を行います。お口の状態によっては、この工程を省略できる場合もあります。</p>
+        </div>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-box">04</div>
+        <div class="flow-content">
+          <h3>治療当日（約1〜2時間）</h3>
+          <p>必要最小限の前処置後、レジンを積層・成形・光照射で硬化させます。仕上げに研磨を行い、咬み合わせを確認して完成です。</p>
+        </div>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-box">05</div>
+        <div class="flow-content">
+          <h3>定期メンテナンス</h3>
+          <p>ダイレクトボンディングを長く美しく保つために、定期的なメンテナンスをお勧めしています。表面の研磨で艶を回復させることができます。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container-narrow">
+    <p class="section-label">FAQ</p>
+    <h2>よくあるご質問</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q.</span>
+          <span class="faq-q-text">セラミックとどう違いますか？</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-a">
+          <p>セラミックは技工所で製作するため強度・耐変色性に優れますが、歯を大きく削る必要があります。ダイレクトボンディングは削る量が少ない反面、経年での変色や欠けが起きる可能性があります。どちらが適切かは口腔内の状態によって異なります。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q.</span>
+          <span class="faq-q-text">保険の白い詰め物（コンポジットレジン）とどう違いますか？</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-a">
+          <p>使用する材料・防湿方法・接着のプロセスなど、治療の質を決めるすべての工程が異なります。詳しくは<a href="https://www.fujishiro-dental.com/direct-bonding-vs-composite-resin" class="faq-link" target="_blank">こちらのページ</a>でご確認いただけます。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q.</span>
+          <span class="faq-q-text">どのくらい持ちますか？</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-a">
+          <p>適切なメンテナンスを継続した場合、論文上では10年以上良好な状態を維持できるケースが90%以上と報告されています。ただし、咬み合わせの強さや生活習慣（色の濃い飲食物など）により個人差があります。部分的な修理・補修ができるのもこの治療の利点です。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q.</span>
+          <span class="faq-q-text">痛みはありますか？</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-a">
+          <p>虫歯治療・審美目的いずれの場合も、治療精度を高めるためにラバーダム防湿を使用します。ラバーダム装着時に痛みが生じる可能性があるため、目的に関わらず原則として麻酔を使用しています。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q.</span>
+          <span class="faq-q-text">1回で終わりますか？</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-a">
+          <p>施術自体は基本的に1回で完了します。ただし、初診カウンセリングや歯石除去・クリーニングなどの前処置が必要な場合はその分の来院回数が加わります。全体の流れは「治療の流れ」をご参照ください。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CTA -->
+<section class="cta-section" id="reserve">
+  <div class="container-narrow">
+    <p class="section-label" style="justify-content:center">First Visit</p>
+    <h2>まずは、お気軽に<br><em>ご相談ください。</em></h2>
+    <p class="cta-sub">
       初診カウンセリングでは、治療の適応・費用・リスクについて<br>
       丁寧にご説明します。治療を強制することは一切ありません。
     </p>
-    <div class="cta-actions">
-      <a href="https://reserve.dental/web/1bb91f-558/home" class="btn btn-primary" target="_blank" rel="noopener">Web予約はこちら</a>
+    <div class="cta-btns">
+      <a href="https://reserve.dental/web/1bb91f-558/home" class="btn-primary" target="_blank">Web予約はこちら</a>
     </div>
-    <div class="tel-block">
-      <span>お電話でのご予約</span>
-      <a href="tel:0297-82-4160">0297-82-4160</a>
-    </div>
-    <p style="margin-top: 1.5rem; font-size: 0.75rem; color: var(--text-muted);">
+    <p style="font-family:'Noto Sans JP',sans-serif;font-size:0.75rem;color:var(--text-dim);margin-bottom:12px;letter-spacing:0.1em;">お電話でのご予約</p>
+    <a href="tel:0297-82-4160" class="cta-phone">0297-82-4160</a>
+    <p class="cta-hours">
       受付時間：月・火・木・金 09:00〜12:30 / 14:30〜18:00　土 09:00〜14:00<br>
       休診日：水・日・祝
     </p>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>
-      坂寄歯科医院｜〒300-1512 茨城県取手市藤代503<br>
-      <a href="https://www.fujishiro-dental.com/" target="_blank" rel="noopener">ホームページへ戻る</a>
-    </p>
-    <p style="margin-top: 1rem;">
-      ※ 当ページに掲載している症例・効果には個人差があります。治療にはリスクが伴います。詳細はカウンセリングにてご確認ください。<br>
-      © 坂寄歯科医院 All rights reserved.
-    </p>
-  </footer>
+<!-- FOOTER -->
+<footer>
+  <p>坂寄歯科医院　〒300-1512 茨城県取手市藤代503</p>
+  <p style="margin-top:8px"><a href="https://www.fujishiro-dental.com/" target="_blank">ホームページへ戻る</a></p>
+  <p style="margin-top:16px">※ 当ページに掲載している症例・効果には個人差があります。治療にはリスクが伴います。詳細はカウンセリングにてご確認ください。</p>
+  <p style="margin-top:8px">© 坂寄歯科医院 All rights reserved.</p>
+</footer>
 
-  <script>
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
-  </script>
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
 
 </body>
 </html>
